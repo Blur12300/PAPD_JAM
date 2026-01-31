@@ -35,7 +35,6 @@ public class Steering_Inputter : MonoBehaviour
         if (shouldMonitorMouse)
         {
             rt.rotation = Quaternion.Euler(0f, 0f, (-leftRight ));
-
         }
     }
     public void ChangeMonitoring()

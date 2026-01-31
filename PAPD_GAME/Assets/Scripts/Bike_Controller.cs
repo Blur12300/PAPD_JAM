@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Bike_Controller : MonoBehaviour
 {
@@ -16,12 +17,7 @@ public class Bike_Controller : MonoBehaviour
     public float minPitch;
     public float maxPitch;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Text speeedoText;
 
     // Update is called once per frame
     void Update()
@@ -45,5 +41,7 @@ public class Bike_Controller : MonoBehaviour
             rb.AddForce(new Vector3(leftRightMult * sideForce, 0, 0));  
         }
         AS.pitch = 1 + (rb.linearVelocity.z / maxFrontSpeed) * 2;
+
+        speeedoText.text = Mathf.Round(rb.linearVelocity.z).ToString()+" m/s";
     }
 }
