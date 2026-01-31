@@ -17,7 +17,6 @@ public class Steering_Inputter : MonoBehaviour
     {
         if (shouldMonitorMouse)
         {
-            //Debug.Log(Input.mousePosition);
 
             float mouseX = Input.GetAxis("Mouse X");
             leftRight += mouseX * 5f;
@@ -25,7 +24,6 @@ public class Steering_Inputter : MonoBehaviour
 
 
             rt.position = new Vector3((leftRight * 10) + offSet, rt.position.y, rt.position.z);
-            Debug.Log(leftRight);
 
         }
 
@@ -44,5 +42,9 @@ public class Steering_Inputter : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
         }
+    }
+    public float GetLeftRight() 
+    {
+        return leftRight;
     }
 }

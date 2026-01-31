@@ -7,8 +7,10 @@ public class Bike_Controller : MonoBehaviour
     public float forwardForce;
     public float sideForce;
 
-    public float maxFront;
-    public float maxSide;
+    public float maxFrontSpeed;
+    public float maxSideSpeed;
+
+    public Steering_Inputter si;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,21 +21,25 @@ public class Bike_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W)) 
+        float lrAmount = si.GetLeftRight();
+        float leftRightMult;
+
+        leftRightMult = lrAmount / si.lockedRightLimit;
+
+        Debug.Log(leftRightMult);
+
+        if (Input.GetKey(KeyCode.W) && rb.linearVelocity.z < maxFrontSpeed)
         {
             rb.AddForce((new Vector3(0, 0, forwardForce)));
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) && rb.linearVelocity.z > -maxFrontSpeed)
         {
-            rb.AddForce(new Vector3(-sideForce, 0, 0));
+            rb.AddForce(new Vector3(0, 0, -forwardForce / 2)  );
         }
-        if (Input.GetKey(KeyCode.S))
+
+        if (rb.linearVelocity.z > 0 && rb.linearVelocity.x < maxSideSpeed)
         {
-            rb.AddForce(new Vector3(0, 0, -forwardForce / 2));
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.AddForce(new Vector3(sideForce, 0, 0));
+            rb.AddForce(new Vector3(leftRightMult * sideForce, 0, 0));  
         }
     }
 }
