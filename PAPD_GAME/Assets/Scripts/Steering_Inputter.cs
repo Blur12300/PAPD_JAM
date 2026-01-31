@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Steering_Inputter : MonoBehaviour
 {
-    public bool shouldMonitorMouse = false;
+    public bool isHoldingOn = false;
 
     public float leftRight = 0;
     public float lockedY;
@@ -13,9 +13,11 @@ public class Steering_Inputter : MonoBehaviour
     public float offSet = 960f;
     public float rotOffSet;
 
+    public GameObject hand;
+
     private void Update()
     {
-        if (shouldMonitorMouse)
+        if (isHoldingOn)
         {
             float mouseX = Input.GetAxis("Mouse X");
             leftRight += mouseX * 5f;
@@ -32,24 +34,26 @@ public class Steering_Inputter : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (shouldMonitorMouse)
+        if (isHoldingOn)
         {
             rt.rotation = Quaternion.Euler(0f, 0f, (-leftRight ));
         }
     }
     public void ChangeMonitoring()
     {
-        shouldMonitorMouse = !shouldMonitorMouse;
+        isHoldingOn = !isHoldingOn;
 
-        if (shouldMonitorMouse)
+        if (isHoldingOn)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
+            hand.SetActive(true);
         }
         else
         {
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
+            hand.SetActive(false);
         }
     }
     public float GetLeftRight() 
