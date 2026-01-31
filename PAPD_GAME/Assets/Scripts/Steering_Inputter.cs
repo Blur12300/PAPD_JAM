@@ -11,6 +11,7 @@ public class Steering_Inputter : MonoBehaviour
 
     public RectTransform rt;
     public float offSet = 960f;
+    public float rotOffSet;
 
     private void Update()
     {
@@ -20,8 +21,9 @@ public class Steering_Inputter : MonoBehaviour
             leftRight += mouseX * 5f;
             leftRight = Mathf.Clamp(leftRight, lockedLeftLimit, lockedRightLimit);
 
+            //rt.position = new Vector3((leftRight * 10) + offSet, rt.position.y, rt.position.z);
+            rt.rotation = new Quaternion(0, 0, 0, rotOffSet);
 
-            rt.position = new Vector3((leftRight * 10) + offSet, rt.position.y, rt.position.z);
             if (Input.GetMouseButtonDown(0))
             {
                 ChangeMonitoring();
