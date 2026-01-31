@@ -12,6 +12,11 @@ public class Bike_Controller : MonoBehaviour
 
     public Steering_Inputter si;
 
+    public AudioSource AS;
+    public float minPitch;
+    public float maxPitch;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,5 +46,6 @@ public class Bike_Controller : MonoBehaviour
         {
             rb.AddForce(new Vector3(leftRightMult * sideForce, 0, 0));  
         }
+        AS.pitch = 1 + (rb.linearVelocity.z / maxFrontSpeed) * 2;
     }
 }
