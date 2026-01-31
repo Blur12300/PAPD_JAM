@@ -22,12 +22,20 @@ public class Steering_Inputter : MonoBehaviour
             leftRight = Mathf.Clamp(leftRight, lockedLeftLimit, lockedRightLimit);
 
             //rt.position = new Vector3((leftRight * 10) + offSet, rt.position.y, rt.position.z);
-            rt.rotation = new Quaternion(0, 0, 0, rotOffSet);
+            //rt.rotation = new Quaternion(0, 0, 0, rotOffSet);
 
             if (Input.GetMouseButtonDown(0))
             {
                 ChangeMonitoring();
             }
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (shouldMonitorMouse)
+        {
+            rt.rotation = Quaternion.Euler(0f, 0f, (-leftRight ));
+
         }
     }
     public void ChangeMonitoring()
