@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Steering_Inputter : MonoBehaviour
 {
-    bool shouldMonitorMouse = false;
+    public bool shouldMonitorMouse = false;
 
     public float leftRight = 0;
     public float lockedY;
@@ -17,16 +16,17 @@ public class Steering_Inputter : MonoBehaviour
     {
         if (shouldMonitorMouse)
         {
-
             float mouseX = Input.GetAxis("Mouse X");
             leftRight += mouseX * 5f;
             leftRight = Mathf.Clamp(leftRight, lockedLeftLimit, lockedRightLimit);
 
 
             rt.position = new Vector3((leftRight * 10) + offSet, rt.position.y, rt.position.z);
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                ChangeMonitoring();
+            }
         }
-
     }
     public void ChangeMonitoring()
     {

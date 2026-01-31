@@ -31,8 +31,6 @@ public class Bike_Controller : MonoBehaviour
 
         leftRightMult = lrAmount / si.lockedRightLimit;
 
-        Debug.Log(leftRightMult);
-
         if (Input.GetKey(KeyCode.W) && rb.linearVelocity.z < maxFrontSpeed)
         {
             rb.AddForce((new Vector3(0, 0, forwardForce)));
