@@ -6,6 +6,8 @@ public class Mask_Wearer : MonoBehaviour,
     IPointerExitHandler
 {
     public GameObject mask;
+    public GameObject maskOnBike;
+
     public Health_And_O2 healthO2;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -15,11 +17,13 @@ public class Mask_Wearer : MonoBehaviour,
         {
             mask.gameObject.SetActive(true);
             healthO2.MaskOn();
+            maskOnBike.SetActive(false);
         }
         else
         {
             mask.gameObject.SetActive(false);
             healthO2.MaskOff();
+            maskOnBike.SetActive(true);
         }
         Debug.Log(mask.gameObject.activeInHierarchy);
     }
