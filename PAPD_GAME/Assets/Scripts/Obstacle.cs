@@ -4,18 +4,13 @@ public class Obstacle : MonoBehaviour
 {
     public GameObject explosion;
     public GameObject obstacle;
+    PizzaHealth ph;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ph = GameObject.FindWithTag("Pizza").GetComponent<PizzaHealth>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -25,6 +20,8 @@ public class Obstacle : MonoBehaviour
 
             exp.transform.SetParent(transform);
             exp.transform.localPosition = Vector3.zero;
+            ph.LowerHealth();
+
         }
     }
 }
